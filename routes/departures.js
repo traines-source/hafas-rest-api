@@ -162,7 +162,7 @@ Uses [\`hafasClient.departures()\`](https://github.com/public-transport/hafas-cl
 									properties: {
 										departures: {
 											type: 'array',
-											items: {type: 'object'}, // todo
+											items: {'$ref': '#/components/schemas/Alternative'},
 										},
 										realtimeDataUpdatedAt: {
 											type: 'integer',

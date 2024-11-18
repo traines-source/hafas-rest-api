@@ -150,7 +150,7 @@ Works like \`/stops/{id}/departures\`, except that it uses [\`hafasClient.arriva
 									properties: {
 										arrivals: {
 											type: 'array',
-											items: {type: 'object'}, // todo
+											items: {'$ref': '#/components/schemas/Alternative'},
 										},
 										realtimeDataUpdatedAt: {
 											type: 'integer',

@@ -84,6 +84,11 @@ Uses [\`hafasClient.reachableFrom()\`](https://github.com/public-transport/hafas
 					url: 'https://github.com/public-transport/hafas-client/blob/6/docs/reachable-from.md',
 				},
 				parameters: [
+					{
+						name: 'address',
+						in: 'query',
+						schema: {'$ref': '#/components/schemas/Location'}
+					},
 					...formatParsersAsOpenapiParams(parsers),
 					jsonPrettyPrintingOpenapiParam,
 				],
@@ -97,7 +102,7 @@ Uses [\`hafasClient.reachableFrom()\`](https://github.com/public-transport/hafas
 									properties: {
 										reachable: {
 											type: 'array',
-											items: {type: 'object'}, // todo
+											items: {'$ref': '#/components/schemas/Duration'},
 										},
 										realtimeDataUpdatedAt: {
 											type: 'integer',

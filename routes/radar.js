@@ -84,6 +84,11 @@ Uses [\`hafasClient.radar()\`](https://github.com/public-transport/hafas-client/
 					url: 'https://github.com/public-transport/hafas-client/blob/6/docs/radar.md',
 				},
 				parameters: [
+					{
+						name: 'bbox',
+						in: 'query',
+						schema: {'$ref': '#/components/schemas/BoundingBox'}
+					},
 					...formatParsersAsOpenapiParams(parsers),
 					jsonPrettyPrintingOpenapiParam,
 				],
@@ -97,7 +102,7 @@ Uses [\`hafasClient.radar()\`](https://github.com/public-transport/hafas-client/
 									properties: {
 										movements: {
 											type: 'array',
-											items: {type: 'object'}, // todo
+											items: {'$ref': '#/components/schemas/Movement'},
 										},
 										realtimeDataUpdatedAt: {
 											type: 'integer',

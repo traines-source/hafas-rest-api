@@ -283,7 +283,7 @@ Uses [\`hafasClient.journeys()\`](https://github.com/public-transport/hafas-clie
 									properties: {
 										journeys: {
 											type: 'array',
-											items: {type: 'object'}, // todo
+											items: {'$ref': '#/components/schemas/Journey'},
 										},
 										realtimeDataUpdatedAt: {
 											type: 'integer',

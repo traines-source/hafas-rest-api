@@ -9,7 +9,9 @@ import {getAllRoutes as getRoutes} from './routes/index.js'
 import {routeUriTemplate} from './lib/route-uri-template.js'
 import {formatLinkHeader as linkHeader} from './lib/link-header.js'
 import {setOpenapiLink, serveOpenapiSpec} from './lib/openapi-spec.js'
-
+import {createRequire} from "module";
+const require = createRequire(import.meta.url);
+const responseSchema = require('./routes/schema/responses.json')
 const REQ_START_TIME = Symbol.for('request-start-time')
 
 const defaultConfig = {
@@ -74,6 +76,7 @@ const createHafasRestApi = async (hafas, config, attachMiddleware) => {
 			remove: true,
 		},
 	})
+	api.locals.schemaDefinitions = responseSchema.components.schemas
 
 	if (config.cors) {
 		const cors = createCors({
