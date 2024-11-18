@@ -139,6 +139,12 @@ Uses [\`hafasClient.tripsByName()\`](https://github.com/public-transport/hafas-c
 				},
 				parameters: [
 					...formatParsersAsOpenapiParams(parsers),
+					{
+						name: 'products',
+						in: 'query',
+						description: 'Filter by profile-specific products (e.g. regional transport only).',
+						schema: {'$ref': '#/components/schemas/Products'}
+					},
 					jsonPrettyPrintingOpenapiParam,
 				],
 				responses: {

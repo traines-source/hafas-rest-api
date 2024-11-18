@@ -271,6 +271,12 @@ Uses [\`hafasClient.journeys()\`](https://github.com/public-transport/hafas-clie
 						schema: {type: 'number'}
 					},
 					...formatParsersAsOpenapiParams(parsers),
+					{
+						name: 'products',
+						in: 'query',
+						description: 'Filter by profile-specific products (e.g. regional transport only).',
+						schema: {'$ref': '#/components/schemas/Products'}
+					},
 					jsonPrettyPrintingOpenapiParam,
 				],
 				responses: {
