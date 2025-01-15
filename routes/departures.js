@@ -18,7 +18,7 @@ import {
 	jsonPrettyPrintingParam,
 } from '../lib/json-pretty-printing.js'
 import {formatParsersAsOpenapiParams} from '../lib/format-parsers-as-openapi.js'
-import {formatProductParams} from '../lib/format-product-parameters.js'
+import {formatProductParams, profileSpecificProductsAsOpenapiParameters} from '../lib/format-product-parameters.js'
 
 const MINUTE = 60 * 1000
 
@@ -150,6 +150,7 @@ Uses [\`hafasClient.departures()\`](https://github.com/public-transport/hafas-cl
 						// todo: examples?
 					},
 					...formatParsersAsOpenapiParams(parsers),
+					profileSpecificProductsAsOpenapiParameters(),
 					jsonPrettyPrintingOpenapiParam,
 				],
 				responses: {
@@ -162,7 +163,7 @@ Uses [\`hafasClient.departures()\`](https://github.com/public-transport/hafas-cl
 									properties: {
 										departures: {
 											type: 'array',
-											items: {type: 'object'}, // todo
+											items: {'$ref': '#/components/schemas/Alternative'},
 										},
 										realtimeDataUpdatedAt: {
 											type: 'integer',

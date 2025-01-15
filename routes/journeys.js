@@ -15,7 +15,7 @@ import {
 	jsonPrettyPrintingParam,
 } from '../lib/json-pretty-printing.js'
 import {formatParsersAsOpenapiParams} from '../lib/format-parsers-as-openapi.js'
-import {formatProductParams} from '../lib/format-product-parameters.js'
+import {formatProductParams, profileSpecificProductsAsOpenapiParameters} from '../lib/format-product-parameters.js'
 
 const WITHOUT_FROM_TO = {
 	from: null,
@@ -271,6 +271,7 @@ Uses [\`hafasClient.journeys()\`](https://github.com/public-transport/hafas-clie
 						schema: {type: 'number'}
 					},
 					...formatParsersAsOpenapiParams(parsers),
+					profileSpecificProductsAsOpenapiParameters(),
 					jsonPrettyPrintingOpenapiParam,
 				],
 				responses: {
@@ -283,7 +284,7 @@ Uses [\`hafasClient.journeys()\`](https://github.com/public-transport/hafas-clie
 									properties: {
 										journeys: {
 											type: 'array',
-											items: {type: 'object'}, // todo
+											items: {'$ref': '#/components/schemas/Journey'},
 										},
 										realtimeDataUpdatedAt: {
 											type: 'integer',

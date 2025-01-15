@@ -92,6 +92,11 @@ Uses [\`hafasClient.nearby()\`](https://github.com/public-transport/hafas-client
 					url: 'https://github.com/public-transport/hafas-client/blob/6/docs/nearby.md',
 				},
 				parameters: [
+					{
+						name: 'location',
+						in: 'query',
+						schema: {'$ref': '#/components/schemas/Location'}
+					},
 					...formatParsersAsOpenapiParams(parsers),
 					jsonPrettyPrintingOpenapiParam,
 				],
@@ -101,8 +106,20 @@ Uses [\`hafasClient.nearby()\`](https://github.com/public-transport/hafas-client
 						content: {
 							'application/json': {
 								schema: {
-									type: 'array',
-									items: {type: 'object'}, // todo
+									'type': 'array',
+									'items': {
+										'anyOf': [
+											{
+												'$ref': '#/components/schemas/Location'
+											},
+											{
+												'$ref': '#/components/schemas/Station'
+											},
+											{
+												'$ref': '#/components/schemas/Stop'
+											}
+										]
+									}
 								},
 								// todo: example(s)
 							},

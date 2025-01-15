@@ -25,6 +25,7 @@ const config = {
 	description: 'An HTTP API for Deutsche Bahn.',
 	homepage: 'http://example.org/',
 	docsLink: 'http://example.org/docs',
+	openapiSpec: true,
 	logging: true,
 	healthCheck: async () => {
 		const stop = await hafas.stop('8011306')

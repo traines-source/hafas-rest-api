@@ -12,7 +12,7 @@ import {
 	jsonPrettyPrintingParam,
 } from '../lib/json-pretty-printing.js'
 import {formatParsersAsOpenapiParams} from '../lib/format-parsers-as-openapi.js'
-import {formatProductParams} from '../lib/format-product-parameters.js'
+import {formatProductParams, profileSpecificProductsAsOpenapiParameters} from '../lib/format-product-parameters.js'
 
 const err400 = (msg) => {
 	const err = new Error(msg)
@@ -84,7 +84,13 @@ Uses [\`hafasClient.reachableFrom()\`](https://github.com/public-transport/hafas
 					url: 'https://github.com/public-transport/hafas-client/blob/6/docs/reachable-from.md',
 				},
 				parameters: [
+					{
+						name: 'address',
+						in: 'query',
+						schema: {'$ref': '#/components/schemas/Location'}
+					},
 					...formatParsersAsOpenapiParams(parsers),
+					profileSpecificProductsAsOpenapiParameters(),
 					jsonPrettyPrintingOpenapiParam,
 				],
 				responses: {
@@ -97,7 +103,7 @@ Uses [\`hafasClient.reachableFrom()\`](https://github.com/public-transport/hafas
 									properties: {
 										reachable: {
 											type: 'array',
-											items: {type: 'object'}, // todo
+											items: {'$ref': '#/components/schemas/Duration'},
 										},
 										realtimeDataUpdatedAt: {
 											type: 'integer',

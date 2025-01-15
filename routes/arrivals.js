@@ -17,7 +17,7 @@ import {
 	jsonPrettyPrintingParam,
 } from '../lib/json-pretty-printing.js'
 import {formatParsersAsOpenapiParams} from '../lib/format-parsers-as-openapi.js'
-import {formatProductParams} from '../lib/format-product-parameters.js'
+import {formatProductParams, profileSpecificProductsAsOpenapiParameters} from '../lib/format-product-parameters.js'
 
 const err400 = (msg) => {
 	const err = new Error(msg)
@@ -138,6 +138,7 @@ Works like \`/stops/{id}/departures\`, except that it uses [\`hafasClient.arriva
 						// todo: examples?
 					},
 					...formatParsersAsOpenapiParams(parsers),
+					profileSpecificProductsAsOpenapiParameters(),
 					jsonPrettyPrintingOpenapiParam,
 				],
 				responses: {
@@ -150,7 +151,7 @@ Works like \`/stops/{id}/departures\`, except that it uses [\`hafasClient.arriva
 									properties: {
 										arrivals: {
 											type: 'array',
-											items: {type: 'object'}, // todo
+											items: {'$ref': '#/components/schemas/Alternative'},
 										},
 										realtimeDataUpdatedAt: {
 											type: 'integer',

@@ -93,8 +93,7 @@ Uses [\`hafasClient.trip()\`](https://github.com/public-transport/hafas-client/b
 									type: 'object',
 									properties: {
 										trip: {
-											type: 'object',
-											// todo
+											'$ref': '#/components/schemas/Trip'
 										},
 										realtimeDataUpdatedAt: {
 											type: 'integer',

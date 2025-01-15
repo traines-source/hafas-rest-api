@@ -187,7 +187,7 @@ const createHafasRestApi = async (hafas, config, attachMiddleware) => {
 		api.get(path, route)
 	}
 
-	if (config.openapiSpec) serveOpenapiSpec(api)
+	if (config.openapiSpec) serveOpenapiSpec(hafas, api)
 
 	const rootLinks = {}
 	for (const [path, route] of Object.entries(routes)) {

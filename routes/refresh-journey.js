@@ -119,8 +119,7 @@ The journey will be the same (equal \`from\`, \`to\`, \`via\`, date/time & vehic
 									type: 'object',
 									properties: {
 										journey: {
-											type: 'object',
-											// todo
+											'$ref': '#/components/schemas/Journey'
 										},
 										realtimeDataUpdatedAt: {
 											type: 'integer',
